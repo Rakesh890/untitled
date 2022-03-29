@@ -7,9 +7,7 @@ import 'package:untitled/app/services/Api.dart';
 import '../../data/provider/UserModel.dart';
 import '../../data/repository/ApiServices.dart';
 import '../../services/PrefManager.dart';
-/**
- * GetX Template Generator - fb.com/htngu.99
- * */
+
 
 class ProfileController extends GetxController{
 

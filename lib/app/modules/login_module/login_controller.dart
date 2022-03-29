@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:untitled/app/data/provider/UserModel.dart';
@@ -7,9 +6,7 @@ import 'package:untitled/app/data/repository/ApiServices.dart';
 import 'package:untitled/app/routes/app_pages.dart';
 import 'package:untitled/app/services/Api.dart';
 import 'package:untitled/app/services/PrefManager.dart';
-/**
- * GetX Template Generator - fb.com/htngu.99
- * */
+
 
 class LoginController extends GetxController{
 
