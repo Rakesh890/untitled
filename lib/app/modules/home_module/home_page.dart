@@ -10,6 +10,7 @@ class HomePage extends GetView<HomeController> {
     return Scaffold(
       appBar: AppBar(title: Text('Home Page'),
       actions: [
+        IconButton(onPressed: (){}, icon: Icon(Icons.add,size: 32,)),
         IconButton(onPressed: (){
           Get.toNamed(Routes.PROFILE);
         }, icon: Icon(Icons.person)),
@@ -17,9 +18,13 @@ class HomePage extends GetView<HomeController> {
       ]),
       body: Container(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-           IconButton(onPressed: (){}, icon: Icon(Icons.add,size: 32,)),
-
+            Center(child: Text("Hii Welcome ${controller.userData.data!.userDetails!.fullName}",
+            style: TextStyle(
+              fontSize: 20
+            ),))
           ],
         ),
       ),

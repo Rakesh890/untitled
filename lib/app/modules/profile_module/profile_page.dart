@@ -12,7 +12,7 @@ class ProfilePage extends GetView<ProfileController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Sign up')),
+      appBar: AppBar(title: Text('Profile')),
       body: Container(
         child: Form(
           key: controller.registerFormKey,
