@@ -98,7 +98,10 @@ class ProfileController extends GetxController{
       };
       await apiServices.executePost(Api.UpdateUrl, params).then((value) =>
       {
-
+        if(value !- null){
+          userData = UserModel.fromJson(value),
+          prefManager.saveUserInformation(jsonEncode(value)),
+        }
       });
     }catch(err){
 
