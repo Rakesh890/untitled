@@ -19,6 +19,12 @@ class PrefManager
     preferences.setString("userInfo", value);
   }
 
+  removeUserInformation() async
+  {
+    final SharedPreferences preferences = await SharedPreferences.getInstance();
+    return preferences.remove("userInfo");
+  }
+
   getUserInformation() async {
     final SharedPreferences preferences = await SharedPreferences.getInstance();
     return preferences.getString("userInfo");
@@ -27,5 +33,14 @@ class PrefManager
   removeLogout() async{
     final SharedPreferences preferences = await SharedPreferences.getInstance();
     return preferences.remove("isUserLogin");
+  }
+
+  saveUserToken(value) async {
+    final SharedPreferences preferences = await SharedPreferences.getInstance();
+    preferences.setString("userToken", value);
+  }
+  getUserToken() async {
+    final SharedPreferences preferences = await SharedPreferences.getInstance();
+    return preferences.getString("userToken");
   }
 }

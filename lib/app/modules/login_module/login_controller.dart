@@ -79,9 +79,12 @@ class LoginController extends GetxController{
           {
             isShowLoader.value=false,
             print(userData.toJson().toString()),
-            GetSnackBar(message: userData.message.toString(),),
+            Get.snackbar("Success", "${userData.message}"),
             prefManager.isUserlogin(true),
+            //Save User info In Local Storage
             prefManager.saveUserInformation(jsonEncode(value)),
+            //Save User Token In Local Storage
+            prefManager.saveUserToken(userData.data!.token.toString()),
             Get.offAllNamed(Routes.HOME),
           }else{
             prefManager.isUserlogin(false),

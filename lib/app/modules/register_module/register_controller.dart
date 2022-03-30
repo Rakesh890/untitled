@@ -5,13 +5,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:untitled/app/data/provider/UserModel.dart';
 import 'package:untitled/app/data/repository/ApiServices.dart';
+import 'package:untitled/app/modules/home_module/home_controller.dart';
 import 'package:untitled/app/services/Api.dart';
 import 'package:untitled/app/services/PrefManager.dart';
+
+import '../../routes/app_pages.dart';
 /**
  * GetX Template Generator - fb.com/htngu.99
  * */
 
-class RegisterController extends GetxController {
+class RegisterController extends GetxController
+{
+
   GlobalKey<FormState> registerFormKey = GlobalKey();
   TextEditingController emailControoler = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -99,13 +104,17 @@ class RegisterController extends GetxController {
             sevriceResponse = value,
             userData = UserModel.fromJson(sevriceResponse),
             if(userData.success == true){
-              GetSnackBar(title: userData.message,),
+              Get.snackbar("Success", "${ userData.message.toString()}"),
               prefManager.isUserlogin(true),
+              //Save User info In Local Storage
               prefManager.saveUserInformation(jsonEncode(sevriceResponse)),
-
+              //Save User Token In Local Storage
+              prefManager.saveUserToken(userData.data!.token.toString()),
+              Get.offNamed(Routes.HOME),
             }else{
               isShowloader.value=false,
-              GetSnackBar(title: userData.message, message :sevriceResponse["data"]["email"].toString()),
+              // GetSnackBar(title: userData.message, message :sevriceResponse["data"]["email"].toString()),
+              Get.snackbar("Error", "${ userData.message.toString()}"),
               prefManager.isUserlogin(true),
             }
           },

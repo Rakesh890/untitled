@@ -42,8 +42,8 @@ class Data {
 
 class UserDetails {
   final int? id;
-  final String? name;
-  final String? fullName;
+  String? name;
+  late final String? fullName;
   final String? email;
   final String? mobileNo;
   final dynamic emailVerifiedAt;

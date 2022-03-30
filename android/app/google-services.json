@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "589909960875",
+    "project_id": "cupdiknot-task",
+    "storage_bucket": "cupdiknot-task.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:589909960875:android:db868d6a9e7400ea35afee",
+        "android_client_info": {
+          "package_name": "com.example.untitled"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "589909960875-8r84ciop0u5h41g8p38l7mcutf43ksk0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNNo4_oBp1YEHJSTgs12jDpoSLrA7OOyI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "589909960875-8r84ciop0u5h41g8p38l7mcutf43ksk0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

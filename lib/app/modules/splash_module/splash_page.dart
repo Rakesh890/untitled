@@ -9,10 +9,13 @@ class SplashPage extends GetView<SplashController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blue,
       body: SafeArea(
         child: Center(
           child: Container(
-            child: Container(child: Text("Splash Screen"),),
+            child: Container(child: Text("Splash",style: TextStyle(
+              fontSize: 24,color: Colors.white
+            ),),),
           ),
         ),
       ),

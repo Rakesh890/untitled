@@ -21,3 +21,9 @@ final TextStyle loginBtnStyle = TextStyle(
   fontSize: 14,
   fontWeight: FontWeight.bold,
 );
+
+final TextStyle contactStyle = TextStyle(
+  color: Colors.black,
+  fontSize: 16,
+  fontWeight: FontWeight.bold,
+);

@@ -7,10 +7,11 @@ import 'package:untitled/app/services/Api.dart';
 import '../../data/provider/UserModel.dart';
 import '../../data/repository/ApiServices.dart';
 import '../../services/PrefManager.dart';
+import '../home_module/home_controller.dart';
 
 
 class ProfileController extends GetxController{
-
+  HomeController homeCtrl = Get.find();
   GlobalKey<FormState> registerFormKey = GlobalKey();
   TextEditingController emailControoler = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -30,8 +31,8 @@ class ProfileController extends GetxController{
   List gender = ["Male", "Female", "Other"];
   var selectedGenderValue = "Male".obs;
   var isShowloader=false.obs;
-
   var sevriceResponse;
+  var userToken ="";
 
 
   @override
@@ -71,8 +72,7 @@ class ProfileController extends GetxController{
   {
     var data = await prefManager.getUserInformation();
     userData = UserModel.fromJson(jsonDecode(data));
-    printInfo(info: "User Details ${userData.data!.userDetails!.fullName}");
-    fullNameContoller.text = userData.data!.userDetails!.fullName!;
+    fullNameContoller.text = userData.data!.userDetails!.name!;
     emailControoler.text = userData.data!.userDetails!.email!;
     mobileNumber.text = userData.data!.userDetails!.mobileNo!;
     selectedGenderValue.value = userData.data!.userDetails!.gender!.toUpperCase();
@@ -82,6 +82,7 @@ class ProfileController extends GetxController{
    chooseGender(gender[index]);
    var dateFormate = userData.data!.userDetails!.dob!.toString();
    dateOfBirthController.text = dateFormate.replaceAll("00:00:00","");
+    userToken= await prefManager.getUserToken();
   }
 
   Future updateProfile() async
@@ -91,14 +92,20 @@ class ProfileController extends GetxController{
       var params ={
         "full_name":"${fullNameContoller.text}",
         "mobile_no":"${mobileNumber.text}",
-        "gender":"${selectedGenderValue}",
+        "gender":"${selectedGenderValue.toUpperCase()}",
         "dob":"${dateOfBirthController.text}"
       };
-      await apiServices.executePost(Api.UpdateUrl, params).then((value) =>
+      printInfo(info: "Register Params $params");
+      await apiServices.executePost(Api.UpdateUrl,params,userToken).then((value) =>
       {
-        if(value !- null){
+        if(value != null){
           userData = UserModel.fromJson(value),
+          //homeCtrl.userData.data!.userDetails!.fullName = userData.data!.userDetails!.fullName,
+          prefManager.removeUserInformation(),
           prefManager.saveUserInformation(jsonEncode(value)),
+          homeCtrl.getUserDetails(),
+          homeCtrl.userName.value = userData.data!.userDetails!.name!,
+          Get.snackbar("Success", "${userData.message}"),
         }
       });
     }catch(err){
